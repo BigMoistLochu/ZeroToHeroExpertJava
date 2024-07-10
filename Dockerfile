@@ -1,4 +1,2 @@
-FROM ubuntu:latest
-LABEL authors="krokk"
+#.. tutaj dockerfile dla aplikacji springboot
 
-ENTRYPOINT ["top", "-b"]
