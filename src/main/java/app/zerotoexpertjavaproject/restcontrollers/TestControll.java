@@ -9,9 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestControll {
 
-    @GetMapping("/secure/page")
+    @GetMapping("/secure")
     public String getPagge(){
 
         return "xd";
+    }
+
+    @GetMapping("/secure2")
+    public String getPagge2(){
+
+        return "xd2";
     }
 }
