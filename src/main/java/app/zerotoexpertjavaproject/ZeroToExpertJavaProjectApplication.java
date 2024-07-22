@@ -22,6 +22,8 @@ public class ZeroToExpertJavaProjectApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        //ogolnie jak wylaczymy UsernamePasswordFilter to nie jest ustawiany SecurityContext
+
         //Haslo: Dziku123
 //        userRepository.save(new User("Jarek","Czuka","ape@wp.pl","$2a$12$9uxjqile.mIP9LWaf04h6u8JMB3QX.oza/dajLL.swRInewp9xzdO", Permission.USER));
     }

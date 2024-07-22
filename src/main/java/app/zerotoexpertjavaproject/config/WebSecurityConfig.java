@@ -26,7 +26,7 @@ public class WebSecurityConfig{
                 .authorizeHttpRequests(request->request.requestMatchers(HttpMethod.GET,"/login")
                         .permitAll()
                         .requestMatchers(HttpMethod.POST,"/authenticate")
-                        .permitAll()
+                        .hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET,"/favicon.ico")
                         .permitAll()
                         .requestMatchers(HttpMethod.GET,"/secure").hasRole("ADMIN")
