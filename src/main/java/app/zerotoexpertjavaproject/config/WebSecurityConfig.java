@@ -26,15 +26,16 @@ public class WebSecurityConfig{
                 .authorizeHttpRequests(request->request.requestMatchers(HttpMethod.GET,"/login")
                         .permitAll()
                         .requestMatchers(HttpMethod.POST,"/authenticate")
-                        .hasRole("ADMIN")
+                        .permitAll()
                         .requestMatchers(HttpMethod.GET,"/favicon.ico")
                         .permitAll()
-                        .requestMatchers(HttpMethod.GET,"/secure").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET,"/secure")
+                        .hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET,"/")
+                        .permitAll()
                         .anyRequest().authenticated())
                 .authenticationProvider(daoAuthenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilterConfig, UsernamePasswordAuthenticationFilter.class);
-
-
         return http.build();
     }
 }

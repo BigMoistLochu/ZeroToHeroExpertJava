@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class PagesViewController {
     
     @GetMapping("/")
-    public String getMainPage(HttpServletRequest request){
-        System.out.println(request.getRequestedSessionId());
+    public String getMainPage(){
+
         return "index";
+    }
+    @GetMapping("/secure")
+    public String getCheckLocalStorage(){
+        return "secure";
     }
 
 }

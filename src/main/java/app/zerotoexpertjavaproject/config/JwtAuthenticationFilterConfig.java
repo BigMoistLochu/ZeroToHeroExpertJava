@@ -59,21 +59,26 @@ public class JwtAuthenticationFilterConfig extends OncePerRequestFilter {
             return;
         }
 
+        System.out.println(request.getHeader("Authorization"));
 
+        if(!request.getHeader("Authorization").equals("hash123.hash123.hash123")){
+            filterChain.doFilter(request, response);
+            return;
+        }
 
-//        UserDetails userToAuth = new User("Jarek","Czuka","ape@wp.pl","$2a$12$9uxjqile.mIP9LWaf04h6u8JMB3QX.oza/dajLL.swRInewp9xzdO", Permission.ADMIN);
-//
-//        UsernamePasswordAuthenticationToken userTokenToAuth = new UsernamePasswordAuthenticationToken(
-//                userToAuth,
-//                null
-//                ,userToAuth.getAuthorities());
-//
-//        userTokenToAuth.setDetails(
-//                new WebAuthenticationDetailsSource().buildDetails(request)
-//        );
-//
-//        // Ustawienie uwierzytelnienia w SecurityContextHolder
-//        SecurityContextHolder.getContext().setAuthentication(userTokenToAuth);
+        UserDetails userToAuth = new User("Jarek","Czuka","ape@wp.pl","$2a$12$9uxjqile.mIP9LWaf04h6u8JMB3QX.oza/dajLL.swRInewp9xzdO", Permission.ADMIN);
+
+        UsernamePasswordAuthenticationToken userTokenToAuth = new UsernamePasswordAuthenticationToken(
+                userToAuth,
+                null
+                ,userToAuth.getAuthorities());
+
+        userTokenToAuth.setDetails(
+                new WebAuthenticationDetailsSource().buildDetails(request)
+        );
+
+        // Ustawienie uwierzytelnienia w SecurityContextHolder
+        SecurityContextHolder.getContext().setAuthentication(userTokenToAuth);
 
         filterChain.doFilter(request,response);
     }
