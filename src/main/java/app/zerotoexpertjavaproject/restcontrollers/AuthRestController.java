@@ -1,5 +1,7 @@
-package app.zerotoexpertjavaproject.Auth;
+package app.zerotoexpertjavaproject.restcontrollers;
 
+import app.zerotoexpertjavaproject.Auth.AuthRequestBody;
+import app.zerotoexpertjavaproject.Auth.AuthResponseBody;
 import app.zerotoexpertjavaproject.entities.Permission;
 import app.zerotoexpertjavaproject.entities.User;
 import lombok.AllArgsConstructor;
@@ -19,24 +21,10 @@ public class AuthRestController {
 
     private final AuthenticationManager authenticationManager;
 
-    //uzywajac menadzera on deleguje to do
-    //@RequestBody AuthRequestBody request
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthResponseBody> authenticate() {
+    public ResponseEntity<AuthResponseBody> authenticate(@RequestBody AuthRequestBody request) {
 
-//        authenticationManager.authenticate(
-//                new UsernamePasswordAuthenticationToken(
-//                        request.getEmail(),
-//                        request.getPassword()
-//                )
-//        );
-        //wywolujac z kontrollera authenticationManager.authenticate jedynie sprawdzasz czy wszystko jest w porzadku, jesli nie ma takiego usera to walnie exceptionem
-        //to nie rozwiazuje naszego problemu
-        //jesli chcemy zrobic api miedzy frontendem a backendem to generujemy Token albo raz albo po prostu logujemy sie gdzie wciska nam
-
-
-        //zwroc do elementu js
-        return ResponseEntity.status(200).body(new AuthResponseBody("hash123.hash123.hash123"));
+        return ResponseEntity.status(200).header("Location","secure").body(new AuthResponseBody("hash123.hash123.hash123"));
     }
 
 

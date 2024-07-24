@@ -23,19 +23,36 @@
                     <a class="nav-link active" aria-current="page" href="#">Kursy</a>
                 </li>
             </ul>
-            <button type="button" class="btn btn-primary" style="margin-right: 10px">Zaloguj</button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Zaloguj
+            </button>
             <button type="button" class="btn btn-secondary" style="margin-left: 10px">Zarejestruj</button>
         </div>
     </div>
 </nav>
 
-<div>
-    <p class="name">Activate the button</p>
-    <button onclick="getLocalStorageJWT()">ACTIVE!</button>
 
 
-    <button id="navigateButton">Go For Secure Website!</button>
-</div>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Logowanie</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    w tym miejscu bedzie formularz oraz metoda post pod podany endpoint
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+                    <button type="button" class="btn btn-primary">Zaloguj sie</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 <!--BootstrapJS-->
@@ -66,24 +83,33 @@
     }
 
     document.getElementById('navigateButton').addEventListener('click', function() {
-        // Zamiast 'YOUR_TOKEN_HERE' wstaw swój token
-        const token = localStorage.getItem("JWT")
-
         // docelowy url
-        const targetUrl = 'http://localhost:8080/secure';
+        const targetUrl = 'http://localhost:8080/authenticate';
 
-        // Wyślij żądanie z tokenem w nagłówku
+        // uderzanie pod endpoint w celu autoryzacji uzytkownika
+        //ogolnie rzecz biorac taki sposob bardziej jest praktykowany dla zasobow niz
         fetch(targetUrl, {
-            method: 'GET', // Możesz użyć 'POST' lub innych metod w zależności od potrzeb
-            headers: {
-                'Authorization': `${token}`
-            }
+            method: 'POST'
         })
-            .then(response => {
-                if (response.ok) {
-                    // Przekierowanie na docelową stronę po pomyślnym żądaniu
-                    // window.location.assign(targetUrl);
-                }}
+            .then(async response => {
+                    if (response.ok) {
+                        const responseData = await response.json();
+                        const tokenFromServer = responseData.token;
+                        console.log(tokenFromServer + "tutaj token")
+                        localStorage.setItem("JWT", tokenFromServer);
+                        let locationUrl = response.headers.get("Location")
+                        fetch("http://localhost:8080/" + locationUrl, {
+                            method: 'GET',
+                            headers: {
+                                'Authorization': `${localStorage.getItem("JWT")}`
+                            }
+                        }).then(response => {
+                            const pageContent = response.text();
+                            document.getElementById('content').innerHTML = pageContent;
+                        })
+
+                    }
+                }
             )
     });
 

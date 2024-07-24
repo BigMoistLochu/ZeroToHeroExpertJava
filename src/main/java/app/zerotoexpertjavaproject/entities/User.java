@@ -42,12 +42,6 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        //powinno sie zwracac Tylko permissje ktore aktualnie
-//        List<GrantedAuthority> authorities = permission.getPermissions().stream().map(
-//                permissionEnum -> {
-//                    return new SimpleGrantedAuthority(permissionEnum.name());
-//                }
-//        ).collect(Collectors.toList());
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_" + permission.name()));
         return authorities;

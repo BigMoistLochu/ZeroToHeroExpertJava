@@ -1,12 +1,21 @@
 package app.zerotoexpertjavaproject;
 
+import app.zerotoexpertjavaproject.Auth.AuthRequestBody;
+import app.zerotoexpertjavaproject.Auth.AuthResponseBody;
 import app.zerotoexpertjavaproject.entities.Permission;
 import app.zerotoexpertjavaproject.entities.User;
 import app.zerotoexpertjavaproject.repositories.UserRepository;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
 
 @SpringBootApplication
 @AllArgsConstructor
@@ -22,9 +31,6 @@ public class ZeroToExpertJavaProjectApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        //ogolnie jak wylaczymy UsernamePasswordFilter to nie jest ustawiany SecurityContext
 
-        //Haslo: Dziku123
-//        userRepository.save(new User("Jarek","Czuka","ape@wp.pl","$2a$12$9uxjqile.mIP9LWaf04h6u8JMB3QX.oza/dajLL.swRInewp9xzdO", Permission.USER));
     }
 }

@@ -14,9 +14,6 @@ public class PagesViewController {
 
         return "index";
     }
-    @GetMapping("/secure")
-    public String getCheckLocalStorage(){
-        return "secure";
-    }
+
 
 }

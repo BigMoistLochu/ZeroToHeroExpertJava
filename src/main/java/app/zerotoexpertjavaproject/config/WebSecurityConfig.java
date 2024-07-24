@@ -29,8 +29,6 @@ public class WebSecurityConfig{
                         .permitAll()
                         .requestMatchers(HttpMethod.GET,"/favicon.ico")
                         .permitAll()
-                        .requestMatchers(HttpMethod.GET,"/secure")
-                        .hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET,"/")
                         .permitAll()
                         .anyRequest().authenticated())
