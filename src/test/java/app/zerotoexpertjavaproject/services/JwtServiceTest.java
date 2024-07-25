@@ -2,25 +2,20 @@ package app.zerotoexpertjavaproject.services;
 
 import app.zerotoexpertjavaproject.entities.Permission;
 import app.zerotoexpertjavaproject.entities.User;
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
-import lombok.AllArgsConstructor;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 //ta adnotacja w springu daje przeladowany i skonfigurowany kontekst springa
 @SpringBootTest
-class JWTserviceTest {
+class JwtServiceTest {
 
-    private final JWTservice jwTservice;
+    private final JwtService jwTservice;
 
     @Autowired
-    public JWTserviceTest(JWTservice jwTservice){
+    public JwtServiceTest(JwtService jwTservice){
         this.jwTservice = jwTservice;
     }
 

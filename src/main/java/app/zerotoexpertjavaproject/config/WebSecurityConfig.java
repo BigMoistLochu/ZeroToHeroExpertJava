@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @AllArgsConstructor
 public class WebSecurityConfig{
 
-    private final JwtAuthenticationFilterConfig jwtAuthenticationFilterConfig;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final AuthenticationProvider daoAuthenticationProvider;
 
     @Bean
@@ -33,7 +33,7 @@ public class WebSecurityConfig{
                         .permitAll()
                         .anyRequest().authenticated())
                 .authenticationProvider(daoAuthenticationProvider)
-                .addFilterBefore(jwtAuthenticationFilterConfig, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }

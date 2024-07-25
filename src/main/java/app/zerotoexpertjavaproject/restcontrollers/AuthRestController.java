@@ -24,6 +24,9 @@ public class AuthRestController {
     @PostMapping("/authenticate")
     public ResponseEntity<AuthResponseBody> authenticate(@RequestBody AuthRequestBody request) {
 
+        //403 jesli nie uda sie zautoryzowac
+        //200 jesli sie uda i zwrot tokenu plus header Location dla
+
         return ResponseEntity.status(200).header("Location","secure").body(new AuthResponseBody("hash123.hash123.hash123"));
     }
 
