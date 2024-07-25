@@ -11,8 +11,12 @@ public class PagesViewController {
     
     @GetMapping("/")
     public String getMainPage(){
-
         return "index";
+    }
+
+    @GetMapping("/secure")
+    public String getSecurePage(){
+        return "securepage";
     }
 
 

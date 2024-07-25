@@ -2,18 +2,18 @@ package app.zerotoexpertjavaproject.restcontrollers;
 
 import app.zerotoexpertjavaproject.Auth.AuthRequestBody;
 import app.zerotoexpertjavaproject.Auth.AuthResponseBody;
-import app.zerotoexpertjavaproject.entities.Permission;
-import app.zerotoexpertjavaproject.entities.User;
+import app.zerotoexpertjavaproject.services.AuthService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.net.URI;
 
 @RestController
 @AllArgsConstructor
@@ -21,14 +21,20 @@ public class AuthRestController {
 
     private final AuthenticationManager authenticationManager;
 
-    @PostMapping("/authenticate")
+    private final AuthService authService;
+
+    @PostMapping("/auth")
     public ResponseEntity<AuthResponseBody> authenticate(@RequestBody AuthRequestBody request) {
+        try{
+            String token = authService.generateTokenForClient(request);
+            return ResponseEntity.status(200).header("Location","secure").body(new AuthResponseBody(token));
+        }catch (UsernameNotFoundException e){
+            return ResponseEntity.status(403).build();
+        }
 
-        //403 jesli nie uda sie zautoryzowac
-        //200 jesli sie uda i zwrot tokenu plus header Location dla
-
-        return ResponseEntity.status(200).header("Location","secure").body(new AuthResponseBody("hash123.hash123.hash123"));
     }
+
+
 
 
 

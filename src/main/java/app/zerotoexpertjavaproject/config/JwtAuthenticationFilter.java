@@ -41,9 +41,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        String extractedTokenFromHeader = request.getHeader("Authorization").substring(7);
-
-        String username = jwtService.extractUsernameFromPayloadSectionInToken(extractedTokenFromHeader);
+        String extractedToken = request.getHeader("Authorization").substring(7);
+        String username = jwtService.extractUsernameFromPayloadSectionInToken(extractedToken);
 
         if(username==null){
             filterChain.doFilter(request,response);
@@ -52,6 +51,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         try {
             UserDetails userToAuth= userRepository.findByUsername(username).orElseThrow();
+
+            if(jwtService.validToken(extractedToken,userToAuth)){
+                filterChain.doFilter(request,response);
+                return;
+            }
 
             UsernamePasswordAuthenticationToken userTokenToAuth = new UsernamePasswordAuthenticationToken(
                     userToAuth.getUsername(),
