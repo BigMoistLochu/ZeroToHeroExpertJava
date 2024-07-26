@@ -13,8 +13,8 @@ public class AuthService {
 
     private final UserService userService;
 
-    public String generateTokenForClient(AuthRequestBody requestBody){
-        User user = userService.getUserByUsername(requestBody.getEmail());
+    public String generateTokenForClient(String username){
+        User user = userService.getUserByUsername(username);
         return jwtService.generateToken(user);
     }
 

@@ -26,7 +26,7 @@ public class AuthRestController {
     @PostMapping("/auth")
     public ResponseEntity<AuthResponseBody> authenticate(@RequestBody AuthRequestBody request) {
         try{
-            String token = authService.generateTokenForClient(request);
+            String token = authService.generateTokenForClient(request.getEmail());
             return ResponseEntity.status(200).header("Location","secure").body(new AuthResponseBody(token));
         }catch (UsernameNotFoundException e){
             return ResponseEntity.status(403).build();
