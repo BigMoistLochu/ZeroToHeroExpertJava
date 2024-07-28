@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,22 +17,21 @@ import org.springframework.web.bind.annotation.RestController;
 import java.net.URI;
 
 @RestController
+@CrossOrigin
 @AllArgsConstructor
 public class AuthRestController {
-
-    private final AuthenticationManager authenticationManager;
 
     private final AuthService authService;
 
     @PostMapping("/auth")
     public ResponseEntity<AuthResponseBody> authenticate(@RequestBody AuthRequestBody request) {
         try{
-            String token = authService.generateTokenForClient(request.getEmail());
-            return ResponseEntity.status(200).header("Location","secure").body(new AuthResponseBody(token));
+            System.out.println(request.getUsername());
+            String token = authService.generateTokenForClient(request.getUsername());
+            return ResponseEntity.status(200).body(new AuthResponseBody(token,"random_refresh_token"));
         }catch (UsernameNotFoundException e){
-            return ResponseEntity.status(403).build();
+            return ResponseEntity.status(401).build();
         }
-
     }
 
 

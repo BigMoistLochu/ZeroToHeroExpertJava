@@ -43,11 +43,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    w tym miejscu bedzie formularz oraz metoda post pod podany endpoint
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
-                    <button type="button" class="btn btn-primary">Zaloguj sie</button>
+                    <form id="loginForm" action="http://localhost:8080/auth" method="POST">
+                        <label for="username">Username:</label><br>
+                        <input type="text" id="username" name="username"><br>
+                        <label for="password">Password:</label><br>
+                        <input type="text" id="password" name="password">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+                            <button type="submit" class="btn btn-primary">Zaloguj się</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -58,6 +63,32 @@
 <!--BootstrapJS-->
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
+
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Zatrzymanie domyślnego wysyłania formularza
+
+        // Pobranie danych z formularza
+        const formData = new FormData(event.target);
+
+        // Konwersja danych do obiektu JSON
+        const jsonData = {};
+        formData.forEach((value, key) => {
+            jsonData[key] = value;
+        });
+
+        // Wysłanie danych w formacie JSON przy użyciu Fetch API
+        fetch('http://localhost:8080/auth', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jsonData)
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+    });
+
     // let element = localStorage.setItem("JWT", "hasd123123d.dasd123213");
     // console.log("added element to your storage"+localStorage.getItem("JWT"))
     async function getLocalStorageJWT() {

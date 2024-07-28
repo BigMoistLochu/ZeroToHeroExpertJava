@@ -10,8 +10,6 @@ import lombok.Setter;
 @Setter
 @Builder
 public class AuthRequestBody {
-
-    private String email;
+    private String username;
     private String password;
-
 }
