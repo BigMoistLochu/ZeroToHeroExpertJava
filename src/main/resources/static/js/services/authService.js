@@ -20,9 +20,15 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     }).then(response => response.json())
         .then(data => {
                 localStorage.setItem("JWT", data.acces_token);
-
+                disableModal();
             }
         ).catch(error =>
         console.error('Error:', error)
     );
 });
+
+
+function disableModal(){
+    var closeModal = document.getElementById("modalToDisable");
+    closeModal.click()
+}
