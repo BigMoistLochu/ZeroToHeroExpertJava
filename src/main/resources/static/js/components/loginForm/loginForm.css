@@ -1,0 +1,35 @@
+#main-wrapper {
+    width: 1400px;
+    height: 1000px;
+    background-color: black;
+}
+
+#nav-list{
+    background-color: darkgrey;
+}
+
+#logo {
+    font-family: "Edu AU VIC WA NT Hand", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 36px;
+    color: orange;
+}
+
+
+.content-1 {
+    width: 200px;
+    height: 200px;
+    background-color: darkgrey;
+    float: left;
+}
+
+.content-2 {
+    margin-left: 20px;
+    width: 200px;
+    height: 200px;
+    background-color: darkgrey;
+    float: left;
+}
+

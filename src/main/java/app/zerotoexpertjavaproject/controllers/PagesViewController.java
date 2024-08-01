@@ -14,9 +14,9 @@ public class PagesViewController {
         return "index";
     }
 
-    @GetMapping("/secure")
+    @GetMapping("/logowanie")
     public String getSecurePage(){
-        return "securepage";
+        return "loginForm";
     }
 
 
