@@ -5,7 +5,8 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     const formData = new FormData(event.target);
 
     // Konwersja danych do obiektu JSON
-    const jsonData = {};
+    const jsonData = {}
+
     formData.forEach((value, key) => {
         jsonData[key] = value;
     });
@@ -17,10 +18,13 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(jsonData)
-    }).then(response => response.json())
+
+    })
+        .then(response => {return response.json()})
         .then(data => {
-                localStorage.setItem("JWT", data.acces_token);
-                disableModal();
+                localStorage.setItem("JWT", data.access_token);
+                window.location.assign("account")
+
             }
         ).catch(error =>
         console.error('Error:', error)
@@ -28,7 +32,5 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
 });
 
 
-function disableModal(){
-    var closeModal = document.getElementById("modalToDisable");
-    closeModal.click()
-}
+
+

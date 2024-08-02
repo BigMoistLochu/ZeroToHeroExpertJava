@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
+import java.sql.Timestamp;
+import java.util.Date;
 
 @RestController
 @CrossOrigin
@@ -26,9 +28,14 @@ public class AuthRestController {
     @PostMapping("/auth")
     public ResponseEntity<AuthResponseBody> authenticate(@RequestBody AuthRequestBody request) {
         try{
-            System.out.println(request.getUsername());
+
             String token = authService.generateTokenForClient(request.getUsername());
-            return ResponseEntity.status(200).body(new AuthResponseBody(token,"random_refresh_token"));
+            AuthResponseBody responseBody = new AuthResponseBody(token);
+
+            return ResponseEntity.status(200)
+                    .header("Location","account")
+                    .body(responseBody);
+
         }catch (UsernameNotFoundException e){
             return ResponseEntity.status(401).build();
         }

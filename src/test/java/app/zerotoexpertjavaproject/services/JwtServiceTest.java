@@ -34,7 +34,7 @@ class JwtServiceTest {
         //you can modify token by https://jwt.io/
         String generateTokenWithUsernameAndPassword = jwTservice.generateToken(userToAuth);
         //when
-        boolean isTokenValid = jwTservice.validToken(generateTokenWithUsernameAndPassword,userToAuth);
+        boolean isTokenValid = jwTservice.verifyToken(generateTokenWithUsernameAndPassword,userToAuth);
         //then
         assertTrue(isTokenValid);
     }
@@ -48,8 +48,8 @@ class JwtServiceTest {
         //token is wrong, changed username before hashed
         String tokenWithUsernameEqualsJarekInPayload = jwTservice.generateToken(userToAuth);
         //when
-        boolean incorecctToken = jwTservice.validToken(tokenWithUsernameEqualsJarekInPayload+"false hash",userToAuth);
-        boolean correctToken = jwTservice.validToken(tokenWithUsernameEqualsJarekInPayload,userToAuth);
+        boolean incorecctToken = jwTservice.verifyToken(tokenWithUsernameEqualsJarekInPayload+"false hash",userToAuth);
+        boolean correctToken = jwTservice.verifyToken(tokenWithUsernameEqualsJarekInPayload,userToAuth);
         //then
         assertFalse(incorecctToken);
         assertTrue(correctToken);

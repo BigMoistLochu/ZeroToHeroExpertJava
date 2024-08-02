@@ -52,7 +52,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         try {
             UserDetails userToAuth= userRepository.findByUsername(username).orElseThrow();
 
-            if(!jwtService.validToken(extractedToken,userToAuth)){
+            if(!jwtService.verifyToken(extractedToken,userToAuth)){
                 filterChain.doFilter(request,response);
                 return;
             }

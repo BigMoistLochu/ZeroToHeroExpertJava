@@ -4,10 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Timestamp;
+
 @AllArgsConstructor
 @Setter
 @Getter
 public class AuthResponseBody {
-    private String acces_token;
-    private String refresh_token;
+    private String access_token;
 }

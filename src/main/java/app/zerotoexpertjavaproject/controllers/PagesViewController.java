@@ -18,6 +18,10 @@ public class PagesViewController {
     public String getSecurePage(){
         return "loginForm";
     }
+    @GetMapping("/account")
+    public String getPersonalAccountPage(){
+        return "account";
+    }
 
 
 }

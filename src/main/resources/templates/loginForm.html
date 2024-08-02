@@ -1,35 +1,22 @@
 <!DOCTYPE html>
 <head>
     <title>RentCar Logowanie</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand&display=swap" rel="stylesheet">
     <link rel="icon" type="image/jpg" href="images/favico.jpg">
-    <link rel="stylesheet" href="js/components/loginForm/LoginForm.css">
 </head>
 <body>
 
-<div id="main-wrapper">
-    <nav>
-        <div class="nav-list">
-            <a id="logo" href="/">Rent.Car</a>
-        </div>
-    </nav>
+<form id="loginForm" action="auth" method="POST">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+    <label for="password">Password:</label><br>
+    <input type="text" id="password" name="password">
+    <div class="modal-footer">
+        <button id = "modalToDisable" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+        <button type="submit" class="btn btn-primary">Zaloguj się</button>
+    </div>
+</form>
 
-    <div class="content-1"></div>
-    <div class="content-2"></div>
-
-
-
-    <footer>
-
-    </footer>
-
-
-
-</div>
-
-
-
+<script></script>
+<script src="js/services/authService.js"></script>
 </body>
 </html>
