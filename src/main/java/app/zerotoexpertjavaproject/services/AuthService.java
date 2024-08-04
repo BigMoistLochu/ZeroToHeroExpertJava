@@ -1,7 +1,6 @@
 package app.zerotoexpertjavaproject.services;
 
-import app.zerotoexpertjavaproject.Auth.AuthRequestBody;
-import app.zerotoexpertjavaproject.entities.User;
+import app.zerotoexpertjavaproject.entities.userentity.User;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +15,11 @@ public class AuthService {
     public String generateTokenForClient(String username){
         User user = userService.getUserByUsername(username);
         return jwtService.generateToken(user);
+    }
+
+    public String refreshTokenForClient(String token){
+
+        return token;
     }
 
 

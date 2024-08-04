@@ -1,7 +1,7 @@
 package app.zerotoexpertjavaproject.services;
 
-import app.zerotoexpertjavaproject.entities.Permission;
-import app.zerotoexpertjavaproject.entities.User;
+import app.zerotoexpertjavaproject.entities.userentity.Permission;
+import app.zerotoexpertjavaproject.entities.userentity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -31,6 +31,8 @@ public class JwtService {
     }
     public boolean verifyToken(String token, UserDetails userDetails){
         String usernameFromJWT = JWT.decode(token).getClaim("username").asString();
+        //added new claim to verify like expiredTime and createdTime
+
         return generateToken(userDetails).equals(token)
                 && userDetails.getUsername().equals(usernameFromJWT);
     }

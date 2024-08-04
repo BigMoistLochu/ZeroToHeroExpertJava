@@ -1,6 +1,6 @@
 package app.zerotoexpertjavaproject.services;
 
-import app.zerotoexpertjavaproject.entities.User;
+import app.zerotoexpertjavaproject.entities.userentity.User;
 import app.zerotoexpertjavaproject.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

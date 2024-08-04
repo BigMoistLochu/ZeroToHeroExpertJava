@@ -1,5 +1,6 @@
-package app.zerotoexpertjavaproject.entities;
+package app.zerotoexpertjavaproject.entities.userentity;
 
+import app.zerotoexpertjavaproject.entities.tokenentity.Token;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -20,16 +20,21 @@ public class User implements UserDetails {
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String username;
     private String lastname;
+
+    @Column(unique = true)
     private String email;
     private String password;
 
     @Enumerated(EnumType.STRING)
     private Permission permission;
+
+    @OneToOne(mappedBy = "user")
+    private Token token;
 
     public User(){}
     public User(String username, String lastname, String email, String password, Permission permission){

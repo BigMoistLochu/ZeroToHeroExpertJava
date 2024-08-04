@@ -1,4 +1,4 @@
-package app.zerotoexpertjavaproject.entities;
+package app.zerotoexpertjavaproject.entities.userentity;
 
 import java.util.List;
 
