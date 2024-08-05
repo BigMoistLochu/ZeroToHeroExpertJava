@@ -24,7 +24,6 @@ public class User implements UserDetails {
     private Long id;
 
     private String username;
-    private String lastname;
 
     @Column(unique = true)
     private String email;
@@ -37,9 +36,8 @@ public class User implements UserDetails {
     private Token token;
 
     public User(){}
-    public User(String username, String lastname, String email, String password, Permission permission){
+    public User(String username, String email, String password, Permission permission){
         this.username = username;
-        this.lastname = lastname;
         this.email= email;
         this.password = password;
         this.permission = permission;

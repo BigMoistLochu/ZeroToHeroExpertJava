@@ -29,7 +29,7 @@ class JwtServiceTest {
         //given
 
         //retrived user from database for example:
-        User userToAuth = new User("Jarek","Czuka","ape@wp.pl","examplePass123", Permission.USER);
+        User userToAuth = new User("Jarek","ape@wp.pl","examplePass123", Permission.USER);
 
         //you can modify token by https://jwt.io/
         String generateTokenWithUsernameAndPassword = jwTservice.generateToken(userToAuth);
@@ -44,7 +44,7 @@ class JwtServiceTest {
         //given
 
         //retrived user from database for example:
-        User userToAuth = new User("Jarek","Czuka","ape@wp.pl","examplePass123", Permission.USER);
+        User userToAuth = new User("Jarek","ape@wp.pl","examplePass123", Permission.USER);
         //token is wrong, changed username before hashed
         String tokenWithUsernameEqualsJarekInPayload = jwTservice.generateToken(userToAuth);
         //when
@@ -58,7 +58,7 @@ class JwtServiceTest {
     @Test
     void shouldReturnUsernameFromToken(){
 
-        User userToAuth = new User("Jarek","Czuka","ape@wp.pl","examplePass123", Permission.USER);
+        User userToAuth = new User("Jarek","ape@wp.pl","examplePass123", Permission.USER);
         String token = jwTservice.generateToken(userToAuth);
 
         String usernameFromToken = jwTservice.extractUsernameFromPayloadSectionInToken(token);

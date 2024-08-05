@@ -23,7 +23,9 @@ public class Token {
 
     @Column(unique = true, name = "token_cid")
     private String token;
+
     private Timestamp createdTime;
+
     private Timestamp expiredTime;
 
     @OneToOne

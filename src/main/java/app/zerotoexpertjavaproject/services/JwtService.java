@@ -1,6 +1,6 @@
 package app.zerotoexpertjavaproject.services;
 
-import app.zerotoexpertjavaproject.repositories.TokenRepository;
+
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,11 +14,6 @@ public class JwtService {
 
     private final String secretKey = "exampleSecretKey";
     private final Algorithm algorithm = Algorithm.HMAC256(secretKey);
-    private final TokenRepository tokenRepository;
-
-    public JwtService(TokenRepository tokenRepository) {
-        this.tokenRepository = tokenRepository;
-    }
 
     public String generateToken(UserDetails userDetails){
 
@@ -40,15 +35,6 @@ public class JwtService {
 
         return generateToken(userDetails).equals(token)
                 && userDetails.getUsername().equals(usernameFromJWT);
-    }
-
-
-    public void assignAndSaveJwtToken(){
-
-    }
-
-    public void refreshToken(){
-
     }
 
     public String extractUsernameFromPayloadSectionInToken(String token){
