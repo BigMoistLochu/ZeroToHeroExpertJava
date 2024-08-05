@@ -13,9 +13,12 @@ public class AuthService {
     private final UserService userService;
 
     public String generateTokenForClient(String username){
+        //jesli nie ma usera to rzuci bledem
         User user = userService.getUserByUsername(username);
         return jwtService.generateToken(user);
     }
+
+
 
     public String refreshTokenForClient(String token){
 

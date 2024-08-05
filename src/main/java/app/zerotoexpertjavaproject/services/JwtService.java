@@ -1,5 +1,6 @@
 package app.zerotoexpertjavaproject.services;
 
+import app.zerotoexpertjavaproject.repositories.TokenRepository;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +14,11 @@ public class JwtService {
 
     private final String secretKey = "exampleSecretKey";
     private final Algorithm algorithm = Algorithm.HMAC256(secretKey);
+    private final TokenRepository tokenRepository;
+
+    public JwtService(TokenRepository tokenRepository) {
+        this.tokenRepository = tokenRepository;
+    }
 
     public String generateToken(UserDetails userDetails){
 
@@ -21,7 +27,6 @@ public class JwtService {
         //added 10 minut to createdTokenTime
         long tenMinutesInMillis = 10 * 60 * 1000;
         Timestamp expiredTokenTime = new Timestamp(createdTokenTime.getTime()+tenMinutesInMillis);
-
 
         return JWT.create()
                 .withClaim("username",userDetails.getUsername())
@@ -35,6 +40,15 @@ public class JwtService {
 
         return generateToken(userDetails).equals(token)
                 && userDetails.getUsername().equals(usernameFromJWT);
+    }
+
+
+    public void assignAndSaveJwtToken(){
+
+    }
+
+    public void refreshToken(){
+
     }
 
     public String extractUsernameFromPayloadSectionInToken(String token){

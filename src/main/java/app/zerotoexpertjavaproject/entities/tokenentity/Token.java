@@ -2,10 +2,18 @@ package app.zerotoexpertjavaproject.entities.tokenentity;
 
 import app.zerotoexpertjavaproject.entities.userentity.User;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 
 @Entity
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Token {
 
 

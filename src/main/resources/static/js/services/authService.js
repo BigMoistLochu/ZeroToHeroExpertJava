@@ -12,7 +12,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     });
 
     // Wysłanie danych w formacie JSON przy użyciu Fetch API
-    fetch('http://localhost:8080/auth', {
+    fetch('http://localhost:8080/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

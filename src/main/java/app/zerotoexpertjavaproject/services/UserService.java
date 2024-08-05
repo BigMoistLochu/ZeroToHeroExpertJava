@@ -15,6 +15,10 @@ public class UserService {
         return userRepository.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException("User not found"));
     }
 
+    public boolean isUserPresent(String username){
+        return userRepository.existsUserByUsername(username);
+    }
+
 
 
 }
