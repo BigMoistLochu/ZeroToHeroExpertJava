@@ -2,6 +2,7 @@ package app.zerotoexpertjavaproject.restcontrollers;
 
 import app.zerotoexpertjavaproject.Auth.AuthRequestBody;
 import app.zerotoexpertjavaproject.Auth.AuthResponseBody;
+import app.zerotoexpertjavaproject.exceptions.UserAlreadyExistsException;
 import app.zerotoexpertjavaproject.mappers.UserDTO;
 import app.zerotoexpertjavaproject.services.AuthService;
 import app.zerotoexpertjavaproject.services.UserService;
@@ -51,6 +52,11 @@ public class AuthRestController {
             return ResponseEntity.status(HttpStatus.CREATED).body(userDTO);
         }catch (IllegalArgumentException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+        catch (UserAlreadyExistsException e){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred while creating the user");
         }
 
     }
