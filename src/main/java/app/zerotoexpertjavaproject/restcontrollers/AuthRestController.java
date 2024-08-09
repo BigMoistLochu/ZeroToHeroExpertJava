@@ -49,7 +49,7 @@ public class AuthRestController {
     public ResponseEntity<Object> registerUser(@RequestBody AuthRequestBody request){
         try{
             UserDTO userDTO = userService.createUser(request);
-            return ResponseEntity.status(HttpStatus.CREATED).body(userDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         }catch (IllegalArgumentException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }

@@ -33,10 +33,13 @@ public class UserService {
 
     public boolean validateAuthRequestBodyData(AuthRequestBody authRequestBody){
 
-        return authRequestBody.getUsername().length() <= 30
+        return !(authRequestBody.getUsername() == null)
+                && authRequestBody.getUsername().length() <= 30
                 && !authRequestBody.getUsername().isBlank()
+                && !(authRequestBody.getPassword() == null)
                 && authRequestBody.getPassword().length() <= 30
                 && !authRequestBody.getPassword().isBlank()
+                && !(authRequestBody.getEmail() == null)
                 && authRequestBody.getEmail().length() <= 30
                 && !authRequestBody.getEmail().isBlank()
                 && authRequestBody.getEmail().contains("@");

@@ -1,19 +1,24 @@
-package app.zerotoexpertjavaproject.services;
+package app.zerotoexpertjavaproject.services.UserServiceTests;
 
 import app.zerotoexpertjavaproject.Auth.AuthRequestBody;
+import app.zerotoexpertjavaproject.mappers.UserDTO;
 import app.zerotoexpertjavaproject.repositories.UserRepository;
+import app.zerotoexpertjavaproject.services.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 
 
 class UserServiceTest {
 
-    private UserService userService;
+    private final UserService userService;
+
     private UserServiceTest(){
-       UserRepository userRepository = Mockito.mock(UserRepository.class);
-       userService = new UserService(userRepository);
+        UserRepository userRepository = Mockito.mock(UserRepository.class);
+       this.userService = new UserService(userRepository);
     }
 
     @Test
@@ -84,5 +89,16 @@ class UserServiceTest {
         Assertions.assertFalse(userService.validateAuthRequestBodyData(authRequestBody));
     }
 
+    @Test
+    void shouldReturnFalseWhenEmailFieldIsNullInAuthRequestBody() {
+        //given
+        AuthRequestBody authRequestBody = new AuthRequestBody("username123"
+                ,"password123",null);
+        //then
+        Assertions.assertFalse(userService.validateAuthRequestBodyData(authRequestBody));
+    }
+
+    //reszta to do testow integracyjnych, mozna tez skorzystac z techniki InMemoryRepository
+    //i implementowac zachowanie bazy danych na mapie ale mozna tez potestowac to na postmanie
 
 }
