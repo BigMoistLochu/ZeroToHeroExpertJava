@@ -14,8 +14,9 @@ public class UserMapper {
         return new User();
     }
 
+
     public static User userEntityFromAuthRequestBody(AuthRequestBody authRequestBody){
-        return new User(authRequestBody.getUsername(),authRequestBody.getPassword(),authRequestBody.getEmail(), Permission.USER);
+        return new User(authRequestBody.getUsername(),authRequestBody.getEmail(),authRequestBody.getPassword(), Permission.USER);
     }
 
 

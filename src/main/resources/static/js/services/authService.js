@@ -54,14 +54,32 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         body: JSON.stringify(jsonData)
 
     })
-        .then(response => {return response.json()})
-        .then(data => {
-                console.log(data)
+        .then(response => {
+            if(response.status === 201){
+                console.log("Utworzone zostalo konto")
             }
-        ).catch(error =>
+        })
+        .catch(error =>
         console.error('Error:', error)
     );
 });
+
+
+document.getElementById("githubOAuth").addEventListener("click",function (){
+    var client_ID = "Ov23liFFZf0jP1qF0dl2";
+
+    var REDIRECT_URI = "http://localhost:8080/auth";
+    var SCOPE = "user";
+    // fetch("https://github.com/login/oauth/authorize?client_id="+client_ID+"&redirect_uri="+REDIRECT_URI+"&scope="+SCOPE)
+    var url = "https://github.com/login/oauth/authorize?client_id="+client_ID+"&redirect_uri="+REDIRECT_URI+"&scope="+SCOPE;
+    // window.location.href = url;
+    var currentWindow = window;
+
+    // Otwieramy nowe okno
+    var newWindow = window.open(url, '_blank', 'width=600,height=400');
+
+    
+})
 
 
 

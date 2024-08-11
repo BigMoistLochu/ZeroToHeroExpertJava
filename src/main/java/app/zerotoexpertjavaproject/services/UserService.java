@@ -1,6 +1,7 @@
 package app.zerotoexpertjavaproject.services;
 
 import app.zerotoexpertjavaproject.Auth.AuthRequestBody;
+import app.zerotoexpertjavaproject.entities.tokenentity.Token;
 import app.zerotoexpertjavaproject.entities.userentity.User;
 import app.zerotoexpertjavaproject.exceptions.UserAlreadyExistsException;
 import app.zerotoexpertjavaproject.mappers.UserDTO;
@@ -28,6 +29,9 @@ public class UserService {
         if(!validateAuthRequestBodyData(authRequestBody)) throw new IllegalArgumentException("Invalid data");
         User userToSave = UserMapper.userEntityFromAuthRequestBody(authRequestBody);
         User savedUser = userRepository.save(userToSave);
+
+        if(savedUser == null) throw new IllegalArgumentException("User can't be created");
+
         return UserMapper.userEntityToUserDTO(savedUser);
     }
 

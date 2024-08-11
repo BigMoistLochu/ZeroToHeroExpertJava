@@ -39,6 +39,8 @@ public class WebSecurityConfig{
                         .permitAll()
                         .requestMatchers(HttpMethod.POST,"/register")
                         .permitAll()
+                        .requestMatchers(HttpMethod.GET,"/auth")
+                        .permitAll()
                         .anyRequest().authenticated())
                 .authenticationProvider(daoAuthenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
