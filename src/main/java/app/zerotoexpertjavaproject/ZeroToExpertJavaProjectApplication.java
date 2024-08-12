@@ -13,9 +13,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ZeroToExpertJavaProjectApplication implements CommandLineRunner {
 
 
-    private UserRepository userRepository;
-
-
     public static void main(String[] args) {
         SpringApplication.run(ZeroToExpertJavaProjectApplication.class, args);
     }
