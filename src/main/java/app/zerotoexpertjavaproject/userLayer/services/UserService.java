@@ -1,12 +1,11 @@
-package app.zerotoexpertjavaproject.services;
+package app.zerotoexpertjavaproject.userLayer.services;
 
-import app.zerotoexpertjavaproject.Auth.AuthRequestBody;
-import app.zerotoexpertjavaproject.entities.tokenentity.Token;
-import app.zerotoexpertjavaproject.entities.userentity.User;
+import app.zerotoexpertjavaproject.models.AuthRequestBody;
+import app.zerotoexpertjavaproject.userLayer.entities.userentity.User;
 import app.zerotoexpertjavaproject.exceptions.UserAlreadyExistsException;
-import app.zerotoexpertjavaproject.mappers.UserDTO;
-import app.zerotoexpertjavaproject.mappers.UserMapper;
-import app.zerotoexpertjavaproject.repositories.UserRepository;
+import app.zerotoexpertjavaproject.userLayer.mappers.dtos.UserDTO;
+import app.zerotoexpertjavaproject.userLayer.mappers.UserMapper;
+import app.zerotoexpertjavaproject.userLayer.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -27,6 +26,7 @@ public class UserService {
     public UserDTO createUser(AuthRequestBody authRequestBody){
         if(isUserPresent(authRequestBody.getUsername())) throw new UserAlreadyExistsException("User already exists");
         if(!validateAuthRequestBodyData(authRequestBody)) throw new IllegalArgumentException("Invalid data");
+
         User userToSave = UserMapper.userEntityFromAuthRequestBody(authRequestBody);
         User savedUser = userRepository.save(userToSave);
 

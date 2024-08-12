@@ -1,7 +1,7 @@
 package app.zerotoexpertjavaproject;
 
 
-import app.zerotoexpertjavaproject.repositories.UserRepository;
+import app.zerotoexpertjavaproject.userLayer.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,6 +22,5 @@ public class ZeroToExpertJavaProjectApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
     }
 }

@@ -1,11 +1,11 @@
 package app.zerotoexpertjavaproject.restcontrollers;
 
-import app.zerotoexpertjavaproject.Auth.AuthRequestBody;
-import app.zerotoexpertjavaproject.Auth.AuthResponseBody;
+import app.zerotoexpertjavaproject.models.AuthRequestBody;
+import app.zerotoexpertjavaproject.models.AuthResponseBody;
 import app.zerotoexpertjavaproject.exceptions.UserAlreadyExistsException;
-import app.zerotoexpertjavaproject.mappers.UserDTO;
-import app.zerotoexpertjavaproject.services.AuthService;
-import app.zerotoexpertjavaproject.services.UserService;
+import app.zerotoexpertjavaproject.userLayer.mappers.dtos.UserDTO;
+import app.zerotoexpertjavaproject.userLayer.services.UserService;
+import app.zerotoexpertjavaproject.userLayer.services.AuthService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -60,7 +60,6 @@ public class AuthRestController {
 
     @GetMapping("/auth")
     public String oAuth2Login(@RequestParam String code){
-        //
         System.out.println(code);
         return "sukces";
     }

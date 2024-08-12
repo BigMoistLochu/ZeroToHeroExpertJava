@@ -1,4 +1,4 @@
-package app.zerotoexpertjavaproject.Auth;
+package app.zerotoexpertjavaproject.models;
 
 import lombok.*;
 

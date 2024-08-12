@@ -1,15 +1,11 @@
 package app.zerotoexpertjavaproject.services.UserServiceTests;
 
-import app.zerotoexpertjavaproject.Auth.AuthRequestBody;
-import app.zerotoexpertjavaproject.mappers.UserDTO;
-import app.zerotoexpertjavaproject.repositories.UserRepository;
-import app.zerotoexpertjavaproject.services.UserService;
+import app.zerotoexpertjavaproject.models.AuthRequestBody;
+import app.zerotoexpertjavaproject.userLayer.repositories.UserRepository;
+import app.zerotoexpertjavaproject.userLayer.services.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-
 
 
 class UserServiceTest {

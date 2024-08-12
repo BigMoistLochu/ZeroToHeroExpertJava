@@ -1,6 +1,6 @@
-package app.zerotoexpertjavaproject.services;
+package app.zerotoexpertjavaproject.userLayer.services;
 
-import app.zerotoexpertjavaproject.entities.userentity.User;
+import app.zerotoexpertjavaproject.userLayer.entities.userentity.User;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

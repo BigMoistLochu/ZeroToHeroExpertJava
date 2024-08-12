@@ -1,4 +1,4 @@
-package app.zerotoexpertjavaproject.services;
+package app.zerotoexpertjavaproject.userLayer.services;
 
 public class OAuth2Service {
 

@@ -1,6 +1,6 @@
-package app.zerotoexpertjavaproject.repositories;
+package app.zerotoexpertjavaproject.userLayer.repositories;
 
-import app.zerotoexpertjavaproject.entities.tokenentity.Token;
+import app.zerotoexpertjavaproject.userLayer.entities.tokenentity.Token;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

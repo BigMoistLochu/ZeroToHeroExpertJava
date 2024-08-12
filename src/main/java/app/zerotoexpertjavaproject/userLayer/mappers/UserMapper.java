@@ -1,8 +1,9 @@
-package app.zerotoexpertjavaproject.mappers;
+package app.zerotoexpertjavaproject.userLayer.mappers;
 
-import app.zerotoexpertjavaproject.Auth.AuthRequestBody;
-import app.zerotoexpertjavaproject.entities.userentity.Permission;
-import app.zerotoexpertjavaproject.entities.userentity.User;
+import app.zerotoexpertjavaproject.userLayer.mappers.dtos.UserDTO;
+import app.zerotoexpertjavaproject.models.AuthRequestBody;
+import app.zerotoexpertjavaproject.userLayer.entities.userentity.Permission;
+import app.zerotoexpertjavaproject.userLayer.entities.userentity.User;
 
 public class UserMapper {
 

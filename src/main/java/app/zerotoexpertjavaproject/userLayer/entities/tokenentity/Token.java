@@ -1,6 +1,6 @@
-package app.zerotoexpertjavaproject.entities.tokenentity;
+package app.zerotoexpertjavaproject.userLayer.entities.tokenentity;
 
-import app.zerotoexpertjavaproject.entities.userentity.User;
+import app.zerotoexpertjavaproject.userLayer.entities.userentity.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
