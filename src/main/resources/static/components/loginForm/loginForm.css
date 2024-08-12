@@ -7,14 +7,20 @@
     color: orange;
 }
 
+.social-login-buttons {
+    margin-top: 20px; /* Odstęp od poprzedzającego elementu */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Odstęp między przyciskami */
+}
+
 .g-sign-in-button {
     position: relative;
     top: 50%;
-    left: 50%;
     transform: translate(-50%, -50%);
     margin: 10px;
     display: inline-block;
-    width: 240px;
+    width: 260px;
     height: 50px;
     background-color: #4285f4;
     color: #fff;
@@ -64,7 +70,6 @@
     border: none;
     display: inline-block;
     text-align: center;
-    width: 180px;
 }
 
 
