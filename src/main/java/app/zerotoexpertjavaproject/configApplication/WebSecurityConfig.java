@@ -16,8 +16,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @AllArgsConstructor
 public class WebSecurityConfig{
 
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final JwtAuthenticationCustomFilter jwtAuthenticationCustomFilter;
     private final AuthenticationProvider daoAuthenticationProvider;
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -37,7 +38,7 @@ public class WebSecurityConfig{
                         .requestMatchers(HttpMethod.POST,"/login").permitAll()
                         .anyRequest().authenticated())
                 .authenticationProvider(daoAuthenticationProvider)
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtAuthenticationCustomFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }

@@ -4,12 +4,15 @@ import app.zerotoexpertjavaproject.models.AuthRequestBody;
 import app.zerotoexpertjavaproject.models.AuthResponseBody;
 import app.zerotoexpertjavaproject.exceptions.UserAlreadyExistsException;
 import app.zerotoexpertjavaproject.userLayer.mappers.dtos.UserDTO;
+import app.zerotoexpertjavaproject.userLayer.services.OAuth2Service;
 import app.zerotoexpertjavaproject.userLayer.services.UserService;
 import app.zerotoexpertjavaproject.userLayer.services.AuthService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.web.context.SecurityContextHolderFilter;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,6 +23,8 @@ public class AuthRestController {
     private final AuthService authService;
 
     private final UserService userService;
+
+    private final OAuth2Service oAuth2Service;
 
     /**
      * Tutaj nadawany jest token ktory uzytkownik bedzie posiadal w localStorze by nastepnie wykorzystywac go do autoryzacji do chronionych zasobow
@@ -58,10 +63,15 @@ public class AuthRestController {
 
     }
 
+    //If that process is successful, the app inserts the user details into the Spring Security context so that you are authenticated.
+    //
+    // new Set-Cookie header. This cookie (JSESSIONID by default) is a token for your authentication details for Spring (or any servlet-based) applications.
+    //
+    //So we have a secure application, in the sense that to see any content a user has to authenticate with an external provider (GitHub).
     @GetMapping("/auth")
     public String oAuth2Login(@RequestParam String code){
         System.out.println(code);
-        //z kodem ktory dostales uderzasz pod podane api...
+        oAuth2Service.getGitHub(code);
         return "sukces";
     }
 

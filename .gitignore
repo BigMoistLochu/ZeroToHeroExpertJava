@@ -7,6 +7,8 @@ target/
 mvnw.cmd
 mvnw
 
+variable.env
+
 ### STS ###
 .apt_generated
 .classpath

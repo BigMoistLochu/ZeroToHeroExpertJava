@@ -20,7 +20,7 @@ import java.util.NoSuchElementException;
 
 @Component
 @AllArgsConstructor
-public class JwtAuthenticationFilter extends OncePerRequestFilter {
+public class JwtAuthenticationCustomFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
 
