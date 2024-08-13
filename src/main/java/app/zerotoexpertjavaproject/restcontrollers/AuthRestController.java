@@ -61,6 +61,7 @@ public class AuthRestController {
     @GetMapping("/auth")
     public String oAuth2Login(@RequestParam String code){
         System.out.println(code);
+        //z kodem ktory dostales uderzasz pod podane api...
         return "sukces";
     }
 

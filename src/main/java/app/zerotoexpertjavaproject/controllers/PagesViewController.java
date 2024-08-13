@@ -20,5 +20,10 @@ public class PagesViewController {
         return "account";
     }
 
+    @GetMapping("/error")
+    public String getErrorlPage(){
+        return "errorPage";
+    }
+
 
 }
