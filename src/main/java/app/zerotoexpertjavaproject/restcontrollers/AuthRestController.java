@@ -7,6 +7,7 @@ import app.zerotoexpertjavaproject.userLayer.mappers.dtos.UserDTO;
 import app.zerotoexpertjavaproject.userLayer.services.OAuth2Service;
 import app.zerotoexpertjavaproject.userLayer.services.UserService;
 import app.zerotoexpertjavaproject.userLayer.services.AuthService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -69,9 +70,9 @@ public class AuthRestController {
     //
     //So we have a secure application, in the sense that to see any content a user has to authenticate with an external provider (GitHub).
     @GetMapping("/auth")
-    public String oAuth2Login(@RequestParam String code){
+    public String oAuth2Login(@RequestParam String code) throws JsonProcessingException {
         System.out.println(code);
-        oAuth2Service.getGitHub(code);
+        oAuth2Service.getGitHubAccess(code);
         return "sukces";
     }
 
