@@ -48,12 +48,13 @@ class GitHubOAuth{
                 + "&client_secret="+client_secret
                 + "&code="+code
                 + "&redirect_uri="+REDIRECT_URI;
-        //sdsd
+
         HttpEntity<String> requestEntity = new HttpEntity<>(headers);
 
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
 
         if (response.getStatusCode().is2xxSuccessful()) {
+            System.out.println("accestoken: "+ response.getBody());
             ResponseFromGitHub responseFromGitHub = objectMapper.readValue(response.getBody(),ResponseFromGitHub.class);
             return responseFromGitHub.getAccess_token();
         } else {

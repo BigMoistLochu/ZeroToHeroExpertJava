@@ -69,12 +69,16 @@ public class AuthRestController {
     // new Set-Cookie header. This cookie (JSESSIONID by default) is a token for your authentication details for Spring (or any servlet-based) applications.
     //
     //So we have a secure application, in the sense that to see any content a user has to authenticate with an external provider (GitHub).
-    @GetMapping("/auth")
-    public String oAuth2Login(@RequestParam String code) throws JsonProcessingException {
-        System.out.println(code);
-        oAuth2Service.getGitHubAccess(code);
-        return "sukces";
-    }
+//    @GetMapping("/auth")
+//    public ResponseEntity<String> oAuth2Login(@RequestParam String code){
+//        try {
+//            System.out.println("przyszedl code"+code);
+//            oAuth2Service.getGitHubAccess(code);
+//        }catch (JsonProcessingException e){
+//            ResponseEntity.status(403).body(e.getMessage());
+//        }
+//        return ResponseEntity.status(200).body("Otworzymales JWT w localstora dziekuje");
+//    }
 
 
 

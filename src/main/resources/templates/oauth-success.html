@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Autoryzacja zakończona</title>
+    <script>
+        // Informacja, że autoryzacja się powiodła
+        const authData = {
+            status: 'success',
+            token: 'ACCESS_TOKEN', // Możesz tutaj przekazać inne dane, jeśli potrzebujesz
+        };
+
+        // Sprawdzamy, czy mamy dostęp do `window.opener`
+        if (window.opener && !window.opener.closed) {
+            // Wywołujemy funkcję w głównym oknie
+            window.opener.authCallback(authData);
+        }
+
+        // Zamykamy aktualne okno
+        window.close();
+    </script>
+</head>
+<body>
+<p>Autoryzacja zakończona, proszę czekać...</p>
+</body>
+</html>
